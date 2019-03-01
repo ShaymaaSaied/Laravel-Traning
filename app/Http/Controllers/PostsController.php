@@ -9,9 +9,12 @@ class PostsController extends Controller
     //
     public function index(){
 
-        $posts=Post::latest()->get();
-
-        return view('posts.index',compact('posts'));
+        $posts=Post::all();
+        $archives=Post::selectRaw('year(created_at) year',['monthname(created_at) month','count(*) published'])
+            ->groupBy('year','month')
+            ->get()
+            ->toArray();
+        return view('posts.index',compact('posts','archives'));
     }
     public function show($id){
 
@@ -19,8 +22,15 @@ class PostsController extends Controller
         return view('posts.show',compact('post'));
     }
     public function store(){
-
-        Post::create(request()->all());
+        $this->validate(request(),[
+            'title' =>'required',
+            'body'  =>'required'
+        ]);
+        Post::create([
+            'title'=>request('title'),
+            'body'=>request('body'),
+            'user_id'=>auth()->id()
+        ]);
 
         return redirect('/posts');
     }

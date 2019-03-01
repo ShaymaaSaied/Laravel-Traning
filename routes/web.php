@@ -19,6 +19,7 @@ Route::get('/posts','PostsController@index');
 //Route::get('/posts/{post}','PostsController@show');
 Route::get('/posts/create','PostsController@create');
 Route::post('/posts','PostsController@store');
+Route::post('/posts/{post}/comments','CommentsController@store');
 
 /**
  * Routing with Controller
@@ -35,7 +36,7 @@ Route::get('/', function () {
     /*$tasks=['task1','task2'];*/
     $tasks=DB::table('tasks')->get();
     /*return $tasks;*/
-    return view('welcome',compact('tasks'));
+    return view('home',compact('tasks'));
 });
 
 /*Route::get('/tasks', function () {
@@ -74,3 +75,7 @@ Route::get('/', function () {
 });*/
 
 
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

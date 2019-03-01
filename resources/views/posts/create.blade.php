@@ -1,5 +1,6 @@
 @extends('layout')
 @section('content')
+    @include('layouts.alert')
     <form method="post" action="/posts">
         {{ csrf_field() }}
         <div class="form-group">
