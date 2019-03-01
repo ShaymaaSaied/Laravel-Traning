@@ -11,6 +11,66 @@
 |
 */
 
+/*
+ * Posts Routing
+ *
+ */
+Route::get('/posts','PostsController@index');
+//Route::get('/posts/{post}','PostsController@show');
+Route::get('/posts/create','PostsController@create');
+Route::post('/posts','PostsController@store');
+
+/**
+ * Routing with Controller
+ */
+Route::get('/tasks','TasksController@index');
+Route::get('/tasks/{task}','TasksController@show');
+
+/*
+ * Working without controller
+ *
+ * */
 Route::get('/', function () {
-    return view('welcome');
+
+    /*$tasks=['task1','task2'];*/
+    $tasks=DB::table('tasks')->get();
+    /*return $tasks;*/
+    return view('welcome',compact('tasks'));
 });
+
+/*Route::get('/tasks', function () {
+
+    /*$tasks=['task1','task2'];*/
+    /*
+     * DB Queries
+     * */
+    /*$tasks=DB::table('tasks')->get();*/
+    /*$tasks=DB::table('tasks')->latest()->get();*/
+
+    /*
+     * working with Model
+     * */
+    /*return $tasks;*/
+    /*
+    $tasks=\App\Task::all();
+    /*return view('welcome',compact('tasks'));*/
+    /*return view('tasks.index',compact('tasks'));
+});*/
+/*Route::get('/tasks/{task}', function ($id) {
+
+    /*
+     * DB Queries
+     * */
+    /*$tasks=['task1','task2'];*/
+    /*$task=DB::table('tasks')->find($id);*/
+
+    /*
+     * working with Model
+     * */
+    /*$task=\App\Task::find($id);
+    /*return $tasks;*/
+    /*return view('welcome',compact('task'));*/
+   /* return view('tasks.show',compact('task'));
+});*/
+
+
