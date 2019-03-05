@@ -9,6 +9,7 @@
 
         <ol class="list-unstyled mb-0">
             @foreach($archives as $archive)
+
             <li><a href="#">{{$archive['month']}} {{$archive['year']}}</a></li>
             @endforeach
         </ol>

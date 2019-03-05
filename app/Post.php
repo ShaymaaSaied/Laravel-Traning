@@ -26,4 +26,12 @@ class Post extends Model
             'post_id'=>$this->id
         ]);*/
     }
+
+    public static function archives(){
+        $archives=Post::selectRaw('year(created_at) year, monthname(created_at) month')
+            ->groupBy('year','month')
+            ->get()
+            ->toArray();
+        return $archives;
+    }
 }

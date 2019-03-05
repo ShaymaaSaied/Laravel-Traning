@@ -15,6 +15,12 @@ class AppServiceProvider extends ServiceProvider
     public function register()
     {
         //
+
+        $this->app->singleton('App\Billing\Stripe',function (){
+
+            return new \App\Billing\Stripe(Config('services.stripe.webhook.secret'));
+
+        });
     }
 
     /**
@@ -26,5 +32,8 @@ class AppServiceProvider extends ServiceProvider
     {
         //
         Schema::defaultStringLength(191);
+        view()->composer('layouts.sidebar',function ($view){
+            $view->with('archives',\App\Post::archives());
+        });
     }
 }

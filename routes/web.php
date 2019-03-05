@@ -11,6 +11,15 @@
 |
 */
 
+
+/*
+ * service container
+ * strip example
+ *
+ * */
+
+$strip=App::make('App\Billing\Stripe');
+//dd($strip);
 /*
  * Posts Routing
  *
