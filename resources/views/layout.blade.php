@@ -45,7 +45,7 @@
 <main role="main" class="container">
     <div class="row">
         <div class="col-md-8 blog-main">
-
+            @include('layouts.alert')
             @yield('content')
 
         </div><!-- /.blog-main -->

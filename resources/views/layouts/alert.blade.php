@@ -1,3 +1,8 @@
+@if($flash=session('message'))
+    <div class="alert alert-danger">
+        {{$flash}}
+    </div>
+@endif
 @if(count($errors))
 <div class="alert alert-danger">
     <ul>

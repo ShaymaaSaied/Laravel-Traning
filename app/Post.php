@@ -27,6 +27,9 @@ class Post extends Model
         ]);*/
     }
 
+    public function tags(){
+        return $this->belongsToMany(Tag::class);
+    }
     public static function archives(){
         $archives=Post::selectRaw('year(created_at) year, monthname(created_at) month')
             ->groupBy('year','month')

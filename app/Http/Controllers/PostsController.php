@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Post;
+use App\Http\Requests\RegistrationForm;
 class PostsController extends Controller
 {
     //
@@ -28,6 +29,7 @@ class PostsController extends Controller
             'body'=>request('body'),
             'user_id'=>auth()->id()
         ]);
+        session()->flash('message','post created');
 
         return redirect('/posts');
     }
